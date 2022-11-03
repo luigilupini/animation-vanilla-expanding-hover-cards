@@ -1,0 +1,53 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+/* First start by ensuring our body is full screen vertical & horizontal */
+body {
+  font-family: "Rubik", sans-serif;
+  height: 100vh;
+  width: 100vw;
+  background: rgba(0, 0, 0, 0.9);
+  overflow: hidden;
+  /* centering all content */
+  display: grid;
+  place-items: center;
+}
+/* Being the best wrapper a wrapper can be :)
+To get everything centered ensure your wrapping element has equal measurement to
+its children elements, so it covers them with the same size/aspect ratio. */
+.card-wrapper {
+  background: red;
+  position: relative;
+  width: 30vmin;
+  aspect-ratio: 5 / 7.5;
+}
+
+/* Using vmin or vmax: 
+https://css-tricks.com/simple-little-use-case-vmin/
+Both can change whilst the browser window is resized or the orientation of the
+mobile phone is changed. Example vmin is the minimum between a viewport height
+or width in percentage depending on which is smaller.
+
+vmin - is a percentage of viewport's smaller (vw or vh) dimension
+vmax - is a percentage of viewport's larger (vw or vh) dimension
+
+Viewport units are things like 10vw (10% of the viewport width) or 2vh (2% of
+the viewport height). Useful, as they are always relative to the viewport. No
+cascading or influence by parent elements. There is also `vmin`, which is the
+lesser of vw and vh, and vmax, which is the greater. These values can be used
+for anything that takes a length value, just like px, em or % or whatever. */
+.card {
+  aspect-ratio: 5 / 7.5;
+  background-color: rgba(255, 255, 255, 0.05);
+  position: absolute;
+}
+.big-card {
+  width: 30vmin;
+  border-radius: 1vmin;
+}
+.little-card {
+  width: 12vmin;
+  border-radius: 1vmin;
+}
