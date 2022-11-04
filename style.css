@@ -8,19 +8,32 @@ body {
   font-family: "Rubik", sans-serif;
   height: 100vh;
   width: 100vw;
-  background: rgba(0, 0, 0, 0.9);
+  background: rgba(0, 0, 0, 1);
   overflow: hidden;
   /* centering all content */
   display: grid;
   place-items: center;
 }
+
 /* Being the best wrapper a wrapper can be :)
 To get everything centered ensure your wrapping element has equal measurement to
 its children elements, so it covers them with the same size/aspect ratio. */
-.card-wrapper {
-  position: relative;
+.card-groups,
+.card-group,
+.card {
+  aspect-ratio: 5 / 7;
+}
+
+.card-groups,
+.card-group,
+.big-card {
   width: 30vmin;
-  aspect-ratio: 5 / 7.5;
+}
+.card-groups {
+  position: relative;
+}
+.card-group {
+  position: absolute;
 }
 
 /* Using vmin or vmax: 
@@ -41,6 +54,10 @@ for anything that takes a length value, just like px, em or % or whatever. */
   aspect-ratio: 5 / 7;
   background-color: rgba(255, 255, 255, 0.05);
   position: absolute;
+  transition: transform 800ms cubic-bezier(0.05, 0.43, 0.25, 0.95);
+  /* Important properties for background images */
+  background-position: center;
+  background-size: cover;
 }
 .big-card {
   width: 30vmin;
@@ -48,22 +65,69 @@ for anything that takes a length value, just like px, em or % or whatever. */
 }
 .little-card {
   width: 12vmin;
-  border-radius: 1vmin;
+  border-radius: 2vmin;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+  box-shadow: -1vmin 1vmin 2vmin rgba(0, 0, 0, 0.35);
+  pointer-events: none;
 }
 
-/* Transforming out-of-flow: */
-.big-card:nth-child(1) {
+/* Transforming out-of-flow: 
+`:nth-child` takes a single argument that describes a pattern to match a element
+indices in a list of siblings. The `nth` of anything is n number of occurrences,
+this being that occurrence. In CSS its the counting number away from a parent.*/
+.big-card:nth-child(2) {
+  background-image: url(https://images.unsplash.com/photo-1641061657010-ad4d7796ce23?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60n);
   transform: translateX(-10%) rotate(-1deg);
 }
-.big-card:nth-child(2) {
+.big-card:nth-child(4) {
+  background-image: url(https://images.unsplash.com/photo-1562946138-c2727afb47d1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60n);
   transform: rotate(2deg);
 }
-.big-card:nth-child(3) {
+.big-card:nth-child(6) {
+  background-image: url(https://images.unsplash.com/photo-1666079731990-bcad20be9dfc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60n);
   transform: translateX(-6%) rotate(-3deg);
 }
-.big-card:nth-child(4) {
+.big-card:nth-child(8) {
+  background-image: url(https://images.unsplash.com/photo-1650317114682-a579ec7b7c1c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NjF8fGxha2UlMjBjb21vfGVufDB8MXwwfHw%3D&auto=format&fit=crop&w=500&q=60n);
   transform: translate(10%, 3%) rotate(5deg);
+}
+.little-card:nth-child(7) {
+  background-image: url(https://images.unsplash.com/photo-1551655510-555dc3be8633?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60n);
+}
+.little-card:nth-child(5) {
+  background-image: url(https://images.unsplash.com/photo-1608562099373-69dd6b715cd9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60n);
+}
+.little-card:nth-child(3) {
+  background-image: url(https://images.unsplash.com/photo-1533735069-24d3be786431?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8bGFrZSUyMGNvbW98ZW58MHwxfDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60n);
+}
+.little-card:nth-child(1) {
+  background-image: url(https://images.unsplash.com/photo-1534173751091-95c4b3108237?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60n);
+}
+
+/* Hover effect in uniform arc */
+.card-group:hover > .big-card:nth-child(2) {
+  transform: translate(-75%, 16%) rotate(-24deg);
+}
+.card-group:hover > .big-card:nth-child(4) {
+  transform: translate(-25%, 8%) rotate(-8deg);
+}
+.card-group:hover > .big-card:nth-child(6) {
+  transform: translate(25%, 8%) rotate(8deg);
+}
+.card-group:hover > .big-card:nth-child(8) {
+  transform: translate(75%, 16%) rotate(20deg);
+}
+.card-group:hover > .little-card:nth-child(1) {
+  transform: translate(200%, -160%) rotate(-15deg);
+}
+.card-group:hover > .little-card:nth-child(3) {
+  transform: translate(160%, 150%) rotate(15deg);
+}
+.card-group:hover > .little-card:nth-child(5) {
+  transform: translate(-200%, -170%) rotate(15deg);
+}
+.card-group:hover > .little-card:nth-child(7) {
+  transform: translate(-280%, 140%) rotate(-15deg);
 }
