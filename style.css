@@ -131,3 +131,25 @@ this being that occurrence. In CSS its the counting number away from a parent.*/
 .card-group:hover > .little-card:nth-child(7) {
   transform: translate(-280%, 140%) rotate(-15deg);
 }
+
+/* A wrapping card swipper container */
+.card-buttons {
+  margin-top: 8vmin;
+  display: flex;
+  justify-content: space-around;
+  padding: 0vmin 4vmin;
+}
+.card-buttons > button {
+  font-size: 2vmin;
+  border: 0.3vmin solid rgb(200, 200, 200);
+  border-radius: 100%;
+  color: white;
+  background-color: transparent;
+  height: 6vmin;
+  width: 6vmin;
+  cursor: pointer;
+}
+#love-button {
+  color: rgb(28, 155, 240);
+  border-color: rgb(28, 155, 240);
+}
